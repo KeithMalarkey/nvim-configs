@@ -77,7 +77,7 @@ return {
 
 		require("lualine").setup({
 			options = {
-				theme = "catppuccin", -- 自动检测主题
+				theme = "gruvbox", -- 自动检测主题
 				-- component_separators = { left = "|", right = "|" },
 				-- component_separators = { left = "", right = "" },
 				-- section_separators = { left = "", right = "" },

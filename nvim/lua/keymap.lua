@@ -1,6 +1,6 @@
 vim.keymap.set({ "n", "v" }, "<C-q>", "<cmd>q!<CR>", { desc = "Force quit" })
 vim.keymap.set({ "n", "v" }, "<C-s>", "<cmd>wall<CR>", { desc = "Force write all" })
-vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>", { desc = "[N]ew File" })
+vim.keymap.set("n", "<leader>n", "<cmd>enew<cr>", { desc = "New File" })
 
 vim.keymap.set("n", "<leader>R", function()
 	local old_name = vim.fn.expand("%:p")
@@ -16,21 +16,22 @@ vim.keymap.set("n", "<leader>R", function()
 			vim.notify("文件已重命名为: " .. new_name)
 		end
 	end)
-end, { desc = "[R]ename Current File" })
+end, { desc = "Rename Current File" })
 
 --[[ Tab/Win/Buf(win或者split的操作参见smart_split的config) ]]
 -- space c 关闭窗口,或buffer
 vim.keymap.set("n", "<leader>c", function()
-	-- 获取当前 buffer 的所有窗口
-	local buf_wins = vim.fn.win_findbuf(vim.fn.bufnr())
-	if #buf_wins <= 1 then
-		-- 如果只有一个窗口显示这个 buffer，关闭 buffer
+	local current_buf = vim.api.nvim_get_current_buf()
+	local wins = vim.tbl_filter(function(win)
+		return vim.api.nvim_win_get_buf(win) == current_buf
+	end, vim.api.nvim_list_wins())
+
+	if #wins <= 1 then
 		vim.cmd("bd")
 	else
-		-- 如果多个窗口显示同一个 buffer，只关闭当前窗口
 		vim.cmd("close")
 	end
-end, { desc = "[C]lose window/split or buffer" })
+end, { desc = "Close window/split or buffer" })
 -- 切换buffer
 vim.keymap.set("n", "[b", "<cmd>bp<cr>", { desc = "Previous Buffer" })
 vim.keymap.set("n", "]b", "<cmd>bn<cr>", { desc = "Next Buffer" })
@@ -80,8 +81,8 @@ vim.keymap.set("n", "<C-t>n", "<cmd>tabnew<cr>", { desc = "[T]ab [N]ew" })
 vim.keymap.set("n", "<C-t>c", "<cmd>tabclose<cr>", { desc = "[T]ab [C]lose" })
 
 -- neotree
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" })
-vim.keymap.set("n", "<leader>on", "<cmd>Neotree focus<cr>", { desc = "Focus Neotree" })
+-- vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" })
+-- vim.keymap.set("n", "<leader>on", "<cmd>Neotree focus<cr>", { desc = "Focus Neotree" })
 
 local function neotree_toggle_current()
 	local buf_path = vim.api.nvim_buf_get_name(0) -- 获取当前 buffer 路径

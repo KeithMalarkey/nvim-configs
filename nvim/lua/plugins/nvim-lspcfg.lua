@@ -1,4 +1,4 @@
--- 配置具体的lsp for different lang
+-- 配置具体的lsp for different language
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -34,7 +34,7 @@ return {
 				end
 			end
 
-			-- =================== C / C++ ===================
+			-- =================== C/C++ ===================
 			vim.lsp.config["clangd"] = {
 				cmd = {
 					"clangd",
@@ -138,7 +138,7 @@ return {
 			}
 			vim.lsp.enable("bashls")
 
-			-- =================== Java ====================
+			-- =================== Vim ====================
 			vim.lsp.config["vimls"] = {
 				cmd = { "vun-language-server", "--stdio" },
 				filetypes = { "vim" },

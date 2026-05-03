@@ -119,41 +119,41 @@ return {
 		},
 	},
 	-- 评论插件，显示todo, warn等等，同时实现快速注释块插入
-	{
-		"numToStr/Comment.nvim",
-		dependencies = { "folke/which-key.nvim" },
-		config = function()
-			local comment = require("Comment")
-			comment.setup({
-				padding = true,
-				sticky = true,
-				ignore = "^$",
-				toggler = {
-					line = "gcc", -- 行注释
-					block = "gbc", -- 块注释
-				},
-				opleader = {
-					line = "gc", -- 行操作
-					block = "gb", -- 块操作
-				},
+	-- {
+	-- 	"numToStr/Comment.nvim",
+	-- 	dependencies = { "folke/which-key.nvim" },
+	-- 	config = function()
+	-- 		local comment = require("Comment")
+	-- 		comment.setup({
+	-- 			padding = true,
+	-- 			sticky = true,
+	-- 			ignore = "^$",
+	-- 			toggler = {
+	-- 				line = "gcc", -- 行注释
+	-- 				block = "gbc", -- 块注释
+	-- 			},
+	-- 			opleader = {
+	-- 				line = "gc", -- 行操作
+	-- 				block = "gb", -- 块操作
+	-- 			},
 
-				-- 额外映射
-				extra = {
-					above = "gcO", -- 在上面添加注释
-					below = "gco", -- 在下面添加注释
-					eol = "gcA", -- 在行尾添加注释
-				},
-				mappings = {
-					basic = true,
-					extra = true,
-				},
-				---Function to call before (un)comment
-				pre_hook = nil,
-				---Function to call after (un)comment
-				post_hook = nil,
-			})
-		end,
-	},
+	-- 			-- 额外映射
+	-- 			extra = {
+	-- 				above = "gcO", -- 在上面添加注释
+	-- 				below = "gco", -- 在下面添加注释
+	-- 				eol = "gcA", -- 在行尾添加注释
+	-- 			},
+	-- 			mappings = {
+	-- 				basic = true,
+	-- 				extra = true,
+	-- 			},
+	-- 			---Function to call before (un)comment
+	-- 			pre_hook = nil,
+	-- 			---Function to call after (un)comment
+	-- 			post_hook = nil,
+	-- 		})
+	-- 	end,
+	-- },
 	-- mini icon
 	{
 		"nvim-mini/mini.nvim",
@@ -577,6 +577,7 @@ return {
 			vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
 		end,
 	},
+	-- 更顺滑地窗口抖动
 	{
 		"karb94/neoscroll.nvim",
 		event = "VeryLazy", -- 或 "BufReadPost"，按需触发
